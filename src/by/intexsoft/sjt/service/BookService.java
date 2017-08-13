@@ -8,4 +8,6 @@ public interface BookService {
 	BookEntity addBook(BookEntity book);
 
 	List<BookEntity> findAll();
+	
+	void deleteAll();
 }
