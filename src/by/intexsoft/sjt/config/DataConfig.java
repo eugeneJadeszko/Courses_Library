@@ -74,8 +74,8 @@ public class DataConfig {
 	private Properties jpaProperties() {
 		Properties properties = new Properties();
 		properties.put("hibernate.dialect", env.getRequiredProperty(PROP_HIBERNATE_DIALECT));
-		properties.put("show_sql", env.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
-		properties.put("hbm2ddl.auto", env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
+		properties.put("hibernate.show_sql", env.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
+		properties.put("hibernate.hbm2ddl.auto", env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
 		return properties;
 	}
 }
