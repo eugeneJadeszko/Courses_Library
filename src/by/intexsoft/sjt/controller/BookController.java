@@ -33,10 +33,17 @@ public class BookController {
 		return "add book: " + book.getBook();
 	}
 
-//	@ResponseBody
+	@ResponseBody
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
 		List<BookEntity> rezList = bookService.findAll();
 		return new ResponseEntity<List<BookEntity>>(rezList, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@RequestMapping("/all/del")
+	public String deleteAll() {
+		bookService.deleteAll();
+		return "all books deleted";
 	}
 }

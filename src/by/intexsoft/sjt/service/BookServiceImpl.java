@@ -23,4 +23,9 @@ public class BookServiceImpl implements BookService {
 	public List<BookEntity> findAll() {
 		return repository.findAll();
 	}
+
+	@Override
+	public void deleteAll() {
+		repository.deleteAll();
+	}
 }
