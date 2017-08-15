@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.intexsoft.sjt.entity.BookEntity;
@@ -21,39 +20,34 @@ public class BookController {
 	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("by.intexsoft.sjt.config");
 	BookService bookService = context.getBean(BookServiceImpl.class);
 
-	@ResponseBody
 	@RequestMapping("/add/{tittle}/{author}/{user}")
-	public String add(@PathVariable("tittle") String tittle, @PathVariable("author") String author,
+	public ResponseEntity<?> add(@PathVariable("tittle") String tittle, @PathVariable("author") String author,
 			@PathVariable("user") String user) {
 		BookEntity book = new BookEntity();
 		book.author = author;
 		book.book = tittle;
 		book.user = user;
-		return "add book with name: " + bookService.save(book).book + ", id=" + bookService.save(book).getId();
+		return new ResponseEntity<BookEntity>(bookService.save(book), HttpStatus.OK);
 	}
 
-	@ResponseBody
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
 		List<BookEntity> rezList = bookService.findAll();
 		return new ResponseEntity<List<BookEntity>>(rezList, HttpStatus.OK);
 	}
 
-	@ResponseBody
 	@RequestMapping("/all/del")
 	public String deleteAll() {
 		bookService.deleteAll();
 		return "all books deleted";
 	}
 
-	@ResponseBody
 	@RequestMapping("/find/{id}")
 	public String findById(@PathVariable("id") Long id) {
 		return "id: " + bookService.findById(id).getId() + ", tittle: " + bookService.findById(id).book + ", author: "
 				+ bookService.findById(id).author;
 	}
 
-	@ResponseBody
 	@RequestMapping("/del/{id}")
 	public String deleteById(@PathVariable("id") Long id) {
 		BookEntity entity = bookService.deleteById(id);
