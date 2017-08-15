@@ -12,11 +12,12 @@ public class RunSJT {
 		BookService service = context.getBean(BookServiceImpl.class);
 		// Arrays.asList(context.getBeanDefinitionNames()).forEach(bean ->
 		// System.out.println(bean));
-		BookEntity book = new BookEntity();
-		book.author = "author77";
-		book.book = "book77";
-		book.user = "user77";
-		System.out.println(service.save(book) != null ? "done!" : "error...");
+		// BookEntity book = new BookEntity();
+		// book.author = "author77";
+		// book.book = "book77";
+		// book.user = "user77";
+		// System.out.println(service.save(book) != null ? "done!" : "error...");
+		service.findAll().forEach((BookEntity book) -> System.out.println(book.author));
 		context.close();
 	}
 }
