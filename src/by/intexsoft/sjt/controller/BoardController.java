@@ -1,7 +1,6 @@
 package by.intexsoft.sjt.controller;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.intexsoft.sjt.entity.BoardEntity;
-import by.intexsoft.sjt.entity.BookEntity;
 import by.intexsoft.sjt.service.BoardService;
 
 @RestController
@@ -34,10 +32,4 @@ public class BoardController {
 		List<BoardEntity> rezList = boardService.findAll();
 		return new ResponseEntity<List<BoardEntity>>(rezList, HttpStatus.OK);
 	}
-
-//	@RequestMapping("/books/{boardId}")
-//	public ResponseEntity<?> findBooksById(@PathVariable("boardId") long boardId) {
-//		BoardEntity board = boardService.findById(boardId);
-//		return new ResponseEntity<Set<BookEntity>>(board.book, HttpStatus.OK);
-//	}
 }

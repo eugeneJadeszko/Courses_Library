@@ -1,5 +1,7 @@
 package by.intexsoft.sjt.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +15,8 @@ public class BookServiceImpl extends AbstractEntityServiceImpl<BookEntity> imple
 	@Autowired
 	BookEntityRepository repository;
 
+	@Override
+	public List<BookEntity> findByTittle(String title) {
+		return repository.findByTittle(title);
+	}
 }

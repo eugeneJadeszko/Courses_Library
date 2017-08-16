@@ -41,12 +41,6 @@ public class BookController {
 		return "all books deleted";
 	}
 
-	@RequestMapping("/find/{id}")
-	public String findById(@PathVariable("id") Long id) {
-		return "id: " + bookService.findById(id).getId() + ", tittle: " + bookService.findById(id).tittle + ", author: "
-				+ bookService.findById(id).author;
-	}
-
 	@RequestMapping("/del/{id}")
 	public String deleteById(@PathVariable("id") Long id) {
 		BookEntity entity = bookService.deleteById(id);
@@ -60,5 +54,11 @@ public class BookController {
 	public ResponseEntity<?> getBoard(@PathVariable("bookId") Long bookId) {
 		BookEntity book = bookService.findById(bookId);
 		return new ResponseEntity<BoardEntity>(book.board, HttpStatus.OK);
+	}
+
+	@RequestMapping("findT/{title}")
+	public ResponseEntity<?> findByTitle(@PathVariable("title") String title) {
+		List<BookEntity> rezList = bookService.findByTittle(title);
+		return new ResponseEntity<List<BookEntity>>(rezList, HttpStatus.OK);
 	}
 }
