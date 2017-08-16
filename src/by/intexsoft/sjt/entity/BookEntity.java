@@ -1,8 +1,13 @@
 package by.intexsoft.sjt.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -19,4 +24,8 @@ public class BookEntity extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "board_id")
 	public BoardEntity board;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "book_user", joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"), 
+	inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+	public Set<UserEntity> users;
 }

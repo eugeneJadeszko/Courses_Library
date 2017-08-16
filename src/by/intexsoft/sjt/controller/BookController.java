@@ -31,8 +31,7 @@ public class BookController {
 
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
-		List<BookEntity> rezList = bookService.findAll();
-		return new ResponseEntity<List<BookEntity>>(rezList, HttpStatus.OK);
+		return new ResponseEntity<List<BookEntity>>(bookService.findAll(), HttpStatus.OK);
 	}
 
 	@RequestMapping("/all/del")
