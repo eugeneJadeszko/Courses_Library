@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import by.intexsoft.sjt.entity.BoardEntity;
 import by.intexsoft.sjt.entity.BookEntity;
 import by.intexsoft.sjt.service.BookService;
 import by.intexsoft.sjt.service.impl.BookServiceImpl;
@@ -20,13 +21,11 @@ public class BookController {
 	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("by.intexsoft.sjt.config");
 	BookService bookService = context.getBean(BookServiceImpl.class);
 
-	@RequestMapping("/add/{tittle}/{author}/{user}")
-	public ResponseEntity<?> add(@PathVariable("tittle") String tittle, @PathVariable("author") String author,
-			@PathVariable("user") String user) {
+	@RequestMapping("/add/{tittle}/{author}")
+	public ResponseEntity<?> add(@PathVariable("tittle") String tittle, @PathVariable("author") String author) {
 		BookEntity book = new BookEntity();
 		book.author = author;
-		book.book = tittle;
-		book.user = user;
+		book.tittle = tittle;
 		return new ResponseEntity<BookEntity>(bookService.save(book), HttpStatus.OK);
 	}
 
@@ -42,12 +41,6 @@ public class BookController {
 		return "all books deleted";
 	}
 
-	@RequestMapping("/find/{id}")
-	public String findById(@PathVariable("id") Long id) {
-		return "id: " + bookService.findById(id).getId() + ", tittle: " + bookService.findById(id).book + ", author: "
-				+ bookService.findById(id).author;
-	}
-
 	@RequestMapping("/del/{id}")
 	public String deleteById(@PathVariable("id") Long id) {
 		BookEntity entity = bookService.deleteById(id);
@@ -55,5 +48,17 @@ public class BookController {
 			return "book with id=" + entity.getId() + "deleted";
 		}
 		return "book with id=" + id + " is not exist";
+	}
+
+	@RequestMapping("/board/{bookId}")
+	public ResponseEntity<?> getBoard(@PathVariable("bookId") Long bookId) {
+		BookEntity book = bookService.findById(bookId);
+		return new ResponseEntity<BoardEntity>(book.board, HttpStatus.OK);
+	}
+
+	@RequestMapping("findT/{title}")
+	public ResponseEntity<?> findByTitle(@PathVariable("title") String title) {
+		List<BookEntity> rezList = bookService.findByTittle(title);
+		return new ResponseEntity<List<BookEntity>>(rezList, HttpStatus.OK);
 	}
 }
