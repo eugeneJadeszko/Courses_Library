@@ -2,7 +2,7 @@ package by.intexsoft.sjt.controller;
 
 import java.util.List;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import by.intexsoft.sjt.entity.BoardEntity;
 import by.intexsoft.sjt.entity.BookEntity;
 import by.intexsoft.sjt.service.BookService;
-import by.intexsoft.sjt.service.impl.BookServiceImpl;
 
 @RestController
 @RequestMapping("/book")
 public class BookController {
-
-	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("by.intexsoft.sjt.config");
-	BookService bookService = context.getBean(BookServiceImpl.class);
+	
+	@Autowired
+	BookService bookService;
 
 	@RequestMapping("/add/{tittle}/{author}")
 	public ResponseEntity<?> add(@PathVariable("tittle") String tittle, @PathVariable("author") String author) {

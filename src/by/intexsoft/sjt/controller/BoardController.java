@@ -3,7 +3,6 @@ package by.intexsoft.sjt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +15,8 @@ import by.intexsoft.sjt.service.BoardService;
 @RestController
 @RequestMapping("/board")
 public class BoardController {
+	
 	@Autowired
-	@Qualifier("boardServiceImpl")
 	BoardService boardService;
 
 	@RequestMapping("/add/{number}")
