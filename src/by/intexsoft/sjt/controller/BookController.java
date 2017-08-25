@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.intexsoft.sjt.entity.BoardEntity;
@@ -26,16 +28,20 @@ public class BookController {
 	@Autowired
 	BookService bookService;
 
-	@RequestMapping("/add/{title}/{author}")
-	public ResponseEntity<?> add(@PathVariable("title") String title, @PathVariable("author") String author) {
-		logger.info("Creation of a new book with the name: " + title + " and author: " + author);
-		BookEntity book = new BookEntity();
-		book.author = author;
-		book.tittle = title;
+	/**
+	 * This method adds new book into database
+	 * 
+	 * @param entity
+	 *            - object type {@link BookEntity}
+	 * @return ResponseEntity<>
+	 */
+	@RequestMapping(path = "/add", method = RequestMethod.POST)
+	public ResponseEntity<?> add(@RequestBody BookEntity entity) {
+		logger.info("Creation of a new book with the name: " + entity.tittle + " and author: " + entity.author);
 		try {
-			return new ResponseEntity<BookEntity>(bookService.save(book), HttpStatus.CREATED);
+			return new ResponseEntity<BookEntity>(bookService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
-			logger.error("Error while saving new book with title: " + title + " and author: " + author);
+			logger.error("Error while saving new book with title: " + entity.tittle + " and author: " + entity.author);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -51,6 +57,11 @@ public class BookController {
 		return new ResponseEntity<List<BookEntity>>(bookService.findAll(), HttpStatus.OK);
 	}
 
+	/**
+	 * This method deletes all books from database
+	 * 
+	 * @return HttpStatus
+	 */
 	@RequestMapping("/all/del")
 	public ResponseEntity<?> deleteAll() {
 		logger.info("Delete all books");
@@ -63,6 +74,13 @@ public class BookController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
+	/**
+	 * This method deletes book from database
+	 * 
+	 * @param id
+	 *            - book id
+	 * @return HttpStatus
+	 */
 	@RequestMapping("/del/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
 		logger.info("Delete book with id= " + id);
@@ -82,6 +100,13 @@ public class BookController {
 		return new ResponseEntity<BoardEntity>(book.board, HttpStatus.OK);
 	}
 
+	/**
+	 * This method get books by title
+	 * 
+	 * @param title
+	 *            - book title
+	 * @return - ResponseEntity<List<BookEntity>>
+	 */
 	@RequestMapping("findT/{title}")
 	public ResponseEntity<?> findByTitle(@PathVariable("title") String title) {
 		logger.info("Getting books with title: " + title);
