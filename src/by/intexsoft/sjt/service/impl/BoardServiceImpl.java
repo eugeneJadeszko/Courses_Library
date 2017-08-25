@@ -7,6 +7,9 @@ import by.intexsoft.sjt.entity.BoardEntity;
 import by.intexsoft.sjt.repository.BoardEntityRepository;
 import by.intexsoft.sjt.service.BoardService;
 
+/**
+ * Implementation for {@link BoardService}
+ */
 @Service
 public class BoardServiceImpl extends AbstractEntityServiceImpl<BoardEntity> implements BoardService {
 

@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import by.intexsoft.sjt.entity.AbstractEntity;
 import by.intexsoft.sjt.service.AbstractEntityService;
 
+/**
+ * Implementation for {@link AbstractEntityService}
+ */
 public class AbstractEntityServiceImpl<T extends AbstractEntity> implements AbstractEntityService<T> {
 
 	@Autowired

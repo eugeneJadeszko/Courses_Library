@@ -7,6 +7,9 @@ import by.intexsoft.sjt.entity.UserEntity;
 import by.intexsoft.sjt.repository.UserEntityRepository;
 import by.intexsoft.sjt.service.UserService;
 
+/**
+ * Implementation for {@link UserService}
+ */
 @Service
 public class UserServiceImpl extends AbstractEntityServiceImpl<UserEntity> implements UserService {
 	@Autowired
