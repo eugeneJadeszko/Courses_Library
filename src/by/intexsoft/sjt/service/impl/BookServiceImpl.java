@@ -9,6 +9,9 @@ import by.intexsoft.sjt.entity.BookEntity;
 import by.intexsoft.sjt.repository.BookEntityRepository;
 import by.intexsoft.sjt.service.BookService;
 
+/**
+ * Implementation for {@link BookService}
+ */
 @Service
 public class BookServiceImpl extends AbstractEntityServiceImpl<BookEntity> implements BookService {
 

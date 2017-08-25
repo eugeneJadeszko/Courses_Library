@@ -14,6 +14,9 @@ import by.intexsoft.sjt.entity.BoardEntity;
 import by.intexsoft.sjt.service.BoardService;
 import ch.qos.logback.classic.Logger;
 
+/**
+ * Controller for {@link BoardEntity}
+ */
 @RestController
 @RequestMapping("/board")
 public class BoardController {
@@ -35,6 +38,11 @@ public class BoardController {
 		}
 	}
 
+	/**
+	 * This method getting all boards
+	 * 
+	 * @return ResponseEntity<List<BoardEntity>>
+	 */
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
 		logger.info("Getting all boards");

@@ -15,6 +15,9 @@ import by.intexsoft.sjt.entity.BookEntity;
 import by.intexsoft.sjt.service.BookService;
 import ch.qos.logback.classic.Logger;
 
+/**
+ * Controller for {@link BookEntity}
+ */
 @RestController
 @RequestMapping("/book")
 public class BookController {
@@ -37,6 +40,11 @@ public class BookController {
 		}
 	}
 
+	/**
+	 * This method getting all books
+	 * 
+	 * @return ResponseEntity<List<BookEntity>>
+	 */
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
 		logger.info("Getting all books");

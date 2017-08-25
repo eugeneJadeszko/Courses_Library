@@ -14,6 +14,9 @@ import by.intexsoft.sjt.entity.UserEntity;
 import by.intexsoft.sjt.service.UserService;
 import ch.qos.logback.classic.Logger;
 
+/**
+ * Controller for {@link UserEntity}
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -35,6 +38,11 @@ public class UserController {
 		}
 	}
 
+	/**
+	 * This method getting all users
+	 * 
+	 * @return ResponseEntity<List<UserEntity>>
+	 */
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
 		logger.info("Getting all users");
