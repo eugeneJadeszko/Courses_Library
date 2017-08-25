@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.intexsoft.sjt.entity.BoardEntity;
@@ -25,17 +27,42 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 
-	@RequestMapping("/add/{number}")
-	public ResponseEntity<?> add(@PathVariable("number") int number) {
-		logger.info("Creation of a new board with the number: " + number);
-		BoardEntity board = new BoardEntity();
-		board.number = number;
+	/**
+	 * This method adds new board into database
+	 * 
+	 * @param entity
+	 *            - object type {@link BoardEntity}
+	 * @return ResponseEntity<>
+	 */
+	@RequestMapping(path = "/add", method = RequestMethod.POST)
+	public ResponseEntity<?> add(@RequestBody BoardEntity entity) {
+		logger.info("Creation of a new board with the number: " + entity.number);
 		try {
-			return new ResponseEntity<BoardEntity>(boardService.save(board), HttpStatus.CREATED);
+			return new ResponseEntity<BoardEntity>(boardService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
-			logger.error("Error while saving new board with number: " + number);
+			logger.error("Error while saving new board with number: " + entity.number);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	/**
+	 * This method deletes board from database
+	 * 
+	 * @param id
+	 *            - board id
+	 * @return ResponseEntity<>
+	 */
+	@RequestMapping("/del/{id}")
+	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
+		logger.info("Delete board with id= " + id);
+		BoardEntity board;
+		try {
+			board = boardService.deleteById(id);
+		} catch (Exception e) {
+			logger.error("board with id= " + id + " is not exist");
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(board, HttpStatus.OK);
 	}
 
 	/**
