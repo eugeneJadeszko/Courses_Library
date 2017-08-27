@@ -14,5 +14,5 @@ public interface AbstractEntityService<T extends AbstractEntity> {
 
 	T findById(Long id);
 
-	T deleteById(Long id);
+	void deleteById(Long id);
 }

@@ -50,19 +50,18 @@ public class UserController {
 	 * 
 	 * @param id
 	 *            - user id
-	 * @return ResponseEntity<>
+	 * @return HttpStatus
 	 */
 	@RequestMapping("/del/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
 		logger.info("Delete user with id= " + id);
-		UserEntity user;
 		try {
-			user = userService.deleteById(id);
+			userService.deleteById(id);
 		} catch (Exception e) {
 			logger.error("user with id= " + id + " is not exist");
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(user, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	/**

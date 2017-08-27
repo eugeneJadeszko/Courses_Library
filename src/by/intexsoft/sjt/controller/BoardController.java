@@ -50,19 +50,18 @@ public class BoardController {
 	 * 
 	 * @param id
 	 *            - board id
-	 * @return ResponseEntity<>
+	 * @return HttpStatus
 	 */
 	@RequestMapping("/del/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
 		logger.info("Delete board with id= " + id);
-		BoardEntity board;
 		try {
-			board = boardService.deleteById(id);
+			boardService.deleteById(id);
 		} catch (Exception e) {
 			logger.error("board with id= " + id + " is not exist");
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(board, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	/**

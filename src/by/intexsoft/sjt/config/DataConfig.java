@@ -2,6 +2,8 @@ package by.intexsoft.sjt.config;
 
 import static org.springframework.orm.jpa.vendor.Database.POSTGRESQL;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.flywaydb.core.Flyway;
@@ -38,6 +40,10 @@ public class DataConfig {
 	private String username;
 	@Value("${db.password}")
 	private String password;
+	@Value("${db.hibernate.show_sql}")
+	private boolean show_sql;
+	@Value("${db.hibernate.hbm2ddl.auto}")
+	private String hbm2ddl;
 
 	/**
 	 * Connection settings
@@ -79,6 +85,7 @@ public class DataConfig {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource());
 		entityManagerFactoryBean.setPackagesToScan("by.intexsoft.sjt.entity");
+		entityManagerFactoryBean.setJpaProperties(jpaProperties());
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
 		return entityManagerFactoryBean;
@@ -93,7 +100,7 @@ public class DataConfig {
 	public JpaVendorAdapter adapter() {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setDatabase(POSTGRESQL);
-		adapter.setShowSql(false);
+		adapter.setShowSql(show_sql);
 		return adapter;
 	}
 
@@ -107,5 +114,12 @@ public class DataConfig {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 		return transactionManager;
+	}
+	
+	private Properties jpaProperties() {
+		Properties properties = new Properties();
+//		properties.put("hibernate.dialect", dialect);
+		properties.put("hibernate.hbm2ddl.auto", hbm2ddl);
+		return properties;
 	}
 }
