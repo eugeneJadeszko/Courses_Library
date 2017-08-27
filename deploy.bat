@@ -1,3 +1,4 @@
+REM Your Tomcat directory:
 set tomcat=c:\apache-tomcat-9.0.0.M22
 
 XCOPY /Y bin\* WebContent\WEB-INF\classes\ /e
