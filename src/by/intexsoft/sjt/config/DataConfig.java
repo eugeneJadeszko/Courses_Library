@@ -4,10 +4,12 @@ import static org.springframework.orm.jpa.vendor.Database.POSTGRESQL;
 
 import javax.sql.DataSource;
 
+import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -53,11 +55,26 @@ public class DataConfig {
 	}
 
 	/**
+	 * Flyway configuration
+	 * 
+	 * @return {@link Flyway}
+	 */
+	@Bean(initMethod = "migrate")
+	Flyway flyway() {
+		Flyway flyway = new Flyway();
+		flyway.setBaselineOnMigrate(true);
+		flyway.setLocations("classpath:/db/migration/");
+		flyway.setDataSource(dataSource());
+		return flyway;
+	}
+
+	/**
 	 * Manager for entities
 	 * 
 	 * @return LocalContainerEntityManagerFactoryBean
 	 */
 	@Bean
+	@DependsOn("flyway")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource());
