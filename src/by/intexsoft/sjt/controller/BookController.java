@@ -84,14 +84,13 @@ public class BookController {
 	@RequestMapping("/del/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
 		logger.info("Delete book with id= " + id);
-		BookEntity book;
 		try {
-			book = bookService.deleteById(id);
+			bookService.deleteById(id);
 		} catch (Exception e) {
 			logger.error("book with id= " + id + " is not exist");
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(book, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping("/board/{bookId}")
