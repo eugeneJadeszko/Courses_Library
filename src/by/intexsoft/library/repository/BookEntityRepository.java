@@ -1,10 +1,10 @@
-package by.intexsoft.sjt.repository;
+package by.intexsoft.library.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import by.intexsoft.sjt.entity.BookEntity;
+import by.intexsoft.library.entity.BookEntity;
 
 public interface BookEntityRepository extends JpaRepository<BookEntity, Long> {
 	/**

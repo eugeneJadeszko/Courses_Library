@@ -1,10 +1,10 @@
-package by.intexsoft.sjt;
+package by.intexsoft.library;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import by.intexsoft.sjt.entity.BoardEntity;
-import by.intexsoft.sjt.service.BoardService;
-import by.intexsoft.sjt.service.impl.BoardServiceImpl;
+import by.intexsoft.library.entity.BoardEntity;
+import by.intexsoft.library.service.BoardService;
+import by.intexsoft.library.service.impl.BoardServiceImpl;
 
 public class RunSJT {
 	public static void main(String[] args) {

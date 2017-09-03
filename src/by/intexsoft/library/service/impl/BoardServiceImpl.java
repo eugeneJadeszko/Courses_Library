@@ -1,11 +1,11 @@
-package by.intexsoft.sjt.service.impl;
+package by.intexsoft.library.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import by.intexsoft.sjt.entity.BoardEntity;
-import by.intexsoft.sjt.repository.BoardEntityRepository;
-import by.intexsoft.sjt.service.BoardService;
+import by.intexsoft.library.entity.BoardEntity;
+import by.intexsoft.library.repository.BoardEntityRepository;
+import by.intexsoft.library.service.BoardService;
 
 /**
  * Implementation for {@link BoardService}

@@ -1,9 +1,9 @@
-package by.intexsoft.sjt.service;
+package by.intexsoft.library.service;
 
 import java.util.List;
 
-import by.intexsoft.sjt.entity.BookEntity;
-import by.intexsoft.sjt.repository.BookEntityRepository;
+import by.intexsoft.library.entity.BookEntity;
+import by.intexsoft.library.repository.BookEntityRepository;
 
 /**
  * Service for {@link BookEntityRepository}
