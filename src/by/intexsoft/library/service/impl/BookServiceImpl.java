@@ -1,13 +1,13 @@
-package by.intexsoft.sjt.service.impl;
+package by.intexsoft.library.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import by.intexsoft.sjt.entity.BookEntity;
-import by.intexsoft.sjt.repository.BookEntityRepository;
-import by.intexsoft.sjt.service.BookService;
+import by.intexsoft.library.entity.BookEntity;
+import by.intexsoft.library.repository.BookEntityRepository;
+import by.intexsoft.library.service.BookService;
 
 /**
  * Implementation for {@link BookService}

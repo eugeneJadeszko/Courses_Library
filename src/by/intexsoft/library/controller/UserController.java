@@ -1,4 +1,4 @@
-package by.intexsoft.sjt.controller;
+package by.intexsoft.library.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.intexsoft.sjt.entity.UserEntity;
-import by.intexsoft.sjt.service.UserService;
+import by.intexsoft.library.entity.UserEntity;
+import by.intexsoft.library.service.UserService;
 import ch.qos.logback.classic.Logger;
 
 /**

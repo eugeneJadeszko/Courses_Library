@@ -1,12 +1,12 @@
-package by.intexsoft.sjt.service.impl;
+package by.intexsoft.library.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import by.intexsoft.sjt.entity.AbstractEntity;
-import by.intexsoft.sjt.service.AbstractEntityService;
+import by.intexsoft.library.entity.AbstractEntity;
+import by.intexsoft.library.service.AbstractEntityService;
 
 /**
  * Implementation for {@link AbstractEntityService}

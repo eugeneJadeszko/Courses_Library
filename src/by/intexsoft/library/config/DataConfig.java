@@ -1,4 +1,4 @@
-package by.intexsoft.sjt.config;
+package by.intexsoft.library.config;
 
 import static org.springframework.orm.jpa.vendor.Database.POSTGRESQL;
 
@@ -27,9 +27,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("by.intexsoft.sjt.service")
+@ComponentScan("by.intexsoft.library.service")
 @PropertySource("classpath:app.properties")
-@EnableJpaRepositories("by.intexsoft.sjt.repository")
+@EnableJpaRepositories("by.intexsoft.library.repository")
 public class DataConfig {
 
 	@Value("${db.driver}")
@@ -84,7 +84,7 @@ public class DataConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource());
-		entityManagerFactoryBean.setPackagesToScan("by.intexsoft.sjt.entity");
+		entityManagerFactoryBean.setPackagesToScan("by.intexsoft.library.entity");
 		entityManagerFactoryBean.setJpaProperties(jpaProperties());
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
@@ -115,10 +115,10 @@ public class DataConfig {
 		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 		return transactionManager;
 	}
-	
+
 	private Properties jpaProperties() {
 		Properties properties = new Properties();
-//		properties.put("hibernate.dialect", dialect);
+		// properties.put("hibernate.dialect", dialect);
 		properties.put("hibernate.hbm2ddl.auto", hbm2ddl);
 		return properties;
 	}
