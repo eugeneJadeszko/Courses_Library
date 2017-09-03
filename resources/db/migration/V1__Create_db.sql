@@ -6,7 +6,7 @@ CREATE TABLE board(
 
 CREATE TABLE books(
 	id bigserial,
-    tittle VARCHAR,
+    title VARCHAR,
     author varchar,
     board_id bigint REFERENCES board(id),
     CONSTRAINT book_pk PRIMARY KEY(id)

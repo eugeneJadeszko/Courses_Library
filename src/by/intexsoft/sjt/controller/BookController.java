@@ -37,11 +37,11 @@ public class BookController {
 	 */
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public ResponseEntity<?> add(@RequestBody BookEntity entity) {
-		logger.info("Creation of a new book with the name: " + entity.tittle + " and author: " + entity.author);
+		logger.info("Creation of a new book with the name: " + entity.title + " and author: " + entity.author);
 		try {
 			return new ResponseEntity<BookEntity>(bookService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
-			logger.error("Error while saving new book with title: " + entity.tittle + " and author: " + entity.author);
+			logger.error("Error while saving new book with title: " + entity.title + " and author: " + entity.author);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -109,7 +109,7 @@ public class BookController {
 	@RequestMapping("findT/{title}")
 	public ResponseEntity<?> findByTitle(@PathVariable("title") String title) {
 		logger.info("Getting books with title: " + title);
-		List<BookEntity> rezList = bookService.findByTittle(title);
+		List<BookEntity> rezList = bookService.findByTitle(title);
 		if (rezList.isEmpty()) {
 			logger.info("Books with the title: " + title + " not found");
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

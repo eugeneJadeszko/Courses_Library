@@ -6,6 +6,8 @@ XCOPY /Y bin\* WebContent\WEB-INF\classes\ /e
 cd WebContent
 jar cvf library.war .
 
+RMDIR /s/q %tomcat%\webapps\library
+
 MOVE /Y library.war %tomcat%\webapps\
 cd /d %tomcat%\bin
 startup.bat

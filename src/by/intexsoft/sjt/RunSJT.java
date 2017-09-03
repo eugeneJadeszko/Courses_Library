@@ -12,9 +12,9 @@ public class RunSJT {
 		BoardService boardService = context.getBean(BoardServiceImpl.class);
 		// Arrays.asList(context.getBeanDefinitionNames()).forEach(bean ->
 		// System.out.println(bean));
-		BoardEntity bobobo = new BoardEntity();
-		bobobo.number = 3;
-		boardService.save(bobobo);
+//		BoardEntity bobobo = new BoardEntity();
+//		bobobo.number = 3;
+//		boardService.save(bobobo);
 		boardService.findAll().forEach((BoardEntity board) -> System.out.println(board.number));
 		context.close();
 	}

@@ -14,5 +14,5 @@ public interface BookEntityRepository extends JpaRepository<BookEntity, Long> {
 	 *            - title of book
 	 * @return List<BookEntity>
 	 */
-	List<BookEntity> findByTittle(String title);
+	List<BookEntity> findByTitle(String title);
 }
