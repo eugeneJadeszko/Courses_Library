@@ -16,5 +16,5 @@ public interface BookService extends AbstractEntityService<BookEntity> {
 	 *            - title of book
 	 * @return List<BookEntity>
 	 */
-	List<BookEntity> findByTittle(String title);
+	List<BookEntity> findByTitle(String title);
 }

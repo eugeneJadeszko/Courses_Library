@@ -19,7 +19,7 @@ public class BookServiceImpl extends AbstractEntityServiceImpl<BookEntity> imple
 	BookEntityRepository repository;
 
 	@Override
-	public List<BookEntity> findByTittle(String title) {
-		return repository.findByTittle(title);
+	public List<BookEntity> findByTitle(String title) {
+		return repository.findByTitle(title);
 	}
 }

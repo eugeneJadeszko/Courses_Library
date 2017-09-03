@@ -23,8 +23,8 @@ public class BookEntity extends AbstractEntity {
 	/**
 	 * Title of book
 	 */
-	@Column(name = "tittle")
-	public String tittle;
+	@Column(name = "title")
+	public String title;
 	
 	/**
 	 * Author of book
